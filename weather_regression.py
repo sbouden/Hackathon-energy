@@ -14,9 +14,9 @@ import numpy as np
 API_KEY="176d44eb0b0047b08d19c62b252313ad"
 website_forecast = "https://api.weatherbit.io/v2.0/forecast/hourly?city="
 website_historical="https://api.weatherbit.io/v2.0/history/hourly?city="
-city_name="Toulouse"
+city_name="Paris"
 start_date="17-11-22"
-nb_days=3
+nb_days=1
 
 #x=open('resJson.txt', 'r').read()
 #res = json.loads(x)
@@ -54,9 +54,11 @@ def getForcastDataFrame(city_name):
     res = requests.get(website_forecast + city_name + "&key=" +API_KEY+ "&hours=48").json()
     return getX_dataFrame(res)
 
-#df = getHistoricalDataFrame(city_name, start_date, nb_days)
-df = pd.read_csv("data_weather.csv") 
+df = getHistoricalDataFrame(city_name, start_date, nb_days)
+#df = pd.read_csv("data_weather.csv") 
 #df.to_csv('data_weather.csv')
+
+"""
 X=df[['time', 'temp', 'wind', 'clouds']]
 Y=df_Guillaume['conso']
 
@@ -78,3 +80,4 @@ X_forecast=getForcastDataFrame(city_name)
 Y_forecast = reg.predict(X_forecast)
 print("Consommation prévue:")
 print(Y_forecast)
+"""
